@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.farmerec.mapper.UserMapper1">
+    <!-- 新增用户 -->
+    <insert id="saveUserInfo" parameterType="com.farmerec.entity.user.Users">
+        insert into users(user_id,username,password,phonenumber,loginTime,email,verifyStatus) values(uuid(),#{username},#{password},#{phonenumber},#{loginTime},#{email},#{verifyStatus})
+    </insert>
+    <!-- 删除用户 -->
+    <delete id="deleteUserInfo" parameterType="int">
+        delete from users where user_id=#{value}
+    </delete>
+    <!-- 更新登录时间 -->
+    <update id="updateLoginInfo" parameterType="com.farmerec.entity.user.Users">
+        update users
+        <set>
+            <if test="loginTime!=null">
+               loginTime=#{loginTime},
+            </if>
+        </set>
+        <where>
+           user_id=#{user_id}
+        </where>
+    </update>
+    <!-- 修改密码 -->
+    <update id="updatePassword" parameterType="com.farmerec.entity.user.Users">
+        update users set password=#{password} where user_id=#{user_id}
+    </update>
+    <!-- 修改名称 -->
+    <update id="updateUserName" parameterType="com.farmerec.entity.user.Users">
+        update users set username=#{username} where user_id=#{user_id}
+    </update>
+
+    <!-- 用户权限关联查询 -->
+   <!--  <resultMap type="user" id="user_rights">
+        <id column="id" property="id"/>
+        <result column="userName" property="userName"/>
+        <result column="realName" property="realName"/>
+        <result column="password" property="password"/>
+        <result column="registTime" property="registTime"/>
+        <result column="lastLogin" property="lastLogin"/>
+        <result column="loginCount" property="loginCount"/>
+        <collection property="roles" ofType="role">
+            <id column="rId" property="id"/>
+            <result column="roleValue" property="roleValue"/>
+            <result column="roleDesc" property="roleDesc"/>
+            <result column="roleName" property="roleName"/>
+            <collection property="menus" ofType="menu">
+                <id column="mId" property="id"/>
+                <result column="icon" property="icon"/>
+                <result column="pId" property="pId"/>
+                <result column="rightCode" property="rightCode"/>
+                <result column="rightPos" property="rightPos"/>
+                <result column="serials" property="serials"/>
+                <result column="sort" property="sort"/>
+                <result column="title" property="title"/>
+                <result column="url" property="url"/>
+            </collection>
+        </collection>
+    </resultMap> -->
+    <!-- 验证用户是否存在 -->
+    <select id="validateUserInfo" parameterType="com.farmerec.entity.user.Users" resultType="com.farmerec.entity.user.Users">
+        SELECT * FROM
+			users
+		WHERE
+			phonenumber = #{phonenumber} or email=#{email} or phonenumber=#{email}
+    </select>
+
+    <!-- datagrid条件查询 -->
+    <sql id="query_Where">
+		<where>
+			<if test="username!=null and username!=''">
+			    and username=#{username}
+			</if>
+		</where>
+    </sql>
+    <!-- datagrid条件查询 -->
+    <sql id="query_Where1">
+		<where>
+			<if test="phonenumber!=null and phonenumber!=''">
+			     email=#{email}
+			</if>
+		</where>
+    </sql>
+
+
+    <select id="queryUsers" resultType="com.farmerec.entity.user.Users" parameterType="com.farmerec.entity.user.Users">
+        SELECT * from users
+		<include refid="query_Where1"/>
+    </select>
+
+    <select id="getTotalCount" resultType="int">
+        SELECT count(*) from users
+		<include refid="query_Where"/>
+    </select>
+
+</mapper>
