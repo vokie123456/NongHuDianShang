@@ -33,7 +33,7 @@ public class LoginController {
 	//订单跳转
 	@RequestMapping("/order")
 	public String order(){
-		return "jsp/order.htm";
+		return "jsp/order";
 	}
 	//购物车跳转
 	@RequestMapping("/shopCar")
@@ -51,27 +51,14 @@ public class LoginController {
 	}
 
 	@RequestMapping("/loginUser")
-	public @ResponseBody ParameterObject loginUser(Users user,HttpSession session,String valCode) throws Exception{
-
-		ParameterObject result=new ParameterObject();
-
-		//验证码验证
-		Object objValCode=session.getAttribute("valCode");
-		if(objValCode==null ||!objValCode.toString().equals(valCode)){
-			result.flag(false);
-			result.msg("验证码错误！");
-			return result;
+	public String loginUser(Users user,HttpSession session,String valCode) throws Exception{
+		Users user1=this.userserviceImpl.checkLogin(user);
+		if(user1!=null){
+			session.setAttribute("user", user1);
+			System.out.println("-----------++++++++++++++++");
+			return "jsp/index";
 		}
-		user=this.userserviceImpl.getEntity(user);
-		if(user!=null){
-			session.setAttribute("user", user);
-			result.flag(true);
-			result.msg("登录成功！");
-		}else{
-			result.flag(false);
-			result.msg("登录成功");
-		}
-		return result;
+		return "jsp/login";
 	}
 
 	@RequestMapping("/index")

@@ -1,5 +1,8 @@
 package com.farmerec.service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import com.farmerec.entity.user.Users;
 import com.tlh.system.service.BaseService;
 
@@ -11,4 +14,6 @@ public interface UserService extends BaseService<Users>{
 	public boolean register(Users t) throws Exception;
 
 	public Users checkUser(Users u) throws Exception;
+
+	Users checkLogin(Users t) throws Exception;
 }

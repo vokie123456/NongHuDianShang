@@ -63,7 +63,7 @@
         SELECT * FROM
 			users
 		WHERE
-			phonenumber = #{phonenumber} or email=#{email} or phonenumber=#{email}
+			phonenumber = #{phonenumber} or email=#{email} or email=#{phonenumber}
     </select>
 
     <!-- datagrid条件查询 -->

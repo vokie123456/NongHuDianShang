@@ -3,9 +3,18 @@ package com.farmerec.service.impl;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionContext;
+import javax.xml.ws.spi.http.HttpContext;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
+import org.springframework.web.servlet.HttpServletBean;
 
 import com.farmerec.entity.user.Users;
 import com.farmerec.mapper.UserMapper1;
@@ -44,6 +53,17 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Users getEntity(Users t) throws Exception {
 		return userMapper1.validateUserInfo(t);
+	}
+	@Override
+	public Users checkLogin(Users t) throws Exception{
+		t.setPassword(DigestUtils.md5DigestAsHex(t.getPassword().getBytes()));
+		Users users = this.getEntity(t);
+		System.out.println(users+"-----------------");
+		if(users!=null&&users.getPassword().equals(t.getPassword())){
+			return users;
+		}
+		return null;
+
 	}
 
 	@Override
