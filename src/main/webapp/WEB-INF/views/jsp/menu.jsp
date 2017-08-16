@@ -19,7 +19,7 @@
 	<div class="topNav clearfix">
 		<ul>
 		<c:choose>
-			<c:when test="${sessionScope.existUser == null}">
+			<c:when test="${sessionScope.user == null}">
 			<li id="headerLogin" class="headerLogin" style="display: list-item;">
 				<a href="${ pageContext.request.contextPath }/loginController/login">登录</a>|</li>
 			<li id="headerRegister" class="headerRegister"
@@ -31,7 +31,7 @@
 				${sessionScope.existUser.name }
 				|</li>
 			<li id="headerLogin" class="headerLogin" style="display: list-item;">
-				<a href="/loginController/order">我的订单</a>
+				<a href="${ pageContext.request.contextPath }/loginController/order">我的订单</a>
 			|</li>
 			<li id="headerRegister" class="headerRegister"
 				style="display: list-item;"><a href="${ pageContext.request.contextPath }/loginController/quit">退出</a>|

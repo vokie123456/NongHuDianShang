@@ -31,6 +31,7 @@ public class AuthCodeUitl extends HttpServlet {
 		String authCode = getAuthCode();
 
 		request.getSession().setAttribute("valCode", authCode);
+		System.out.println(authCode+"-----------------------------");
 		try {
 			ImageIO.write(getAuthImg(authCode), "JPEG", response.getOutputStream());
 		} catch (IOException e) {

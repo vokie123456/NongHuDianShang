@@ -9,7 +9,7 @@
 <link href="${pageContext.request.contextPath}/css/slider.css" rel="stylesheet" type="text/css"/>
 <link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css"/>
 <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet" type="text/css"/>
-
+<link rel="icon" href="${pageContext.request.contextPath}/image/title.ico" type="image/x-icon"/>
 </head>
 <body>
 

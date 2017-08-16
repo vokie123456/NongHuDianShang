@@ -91,6 +91,7 @@ public class UserController {
 			response.getWriter().println("<font color='red' face='宋体' id='fontCode'>请输入验证码！</font>");
 		}else{
 			String valCode=(String) session.getAttribute("valCode");
+			System.out.println(valCode+":"+checkcode);
 			if(checkcode.equals(valCode)){
 				response.getWriter().println("<font color='green' face='宋体' id='fontCode'>验证码正确！</font>");
 			}else{
