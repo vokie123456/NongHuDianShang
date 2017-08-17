@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public abstract interface BaseMapper {
+	
 	public abstract int saveEntity(Map<String, Object> paramMap) throws Exception;
 
 	public abstract int deleteEntity(Map<String, Object> paramMap) throws Exception;

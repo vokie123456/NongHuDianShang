@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.farmerec.entity.user.Users;
 import com.farmerec.service.UserService;
 import com.tlh.view.ParameterObject;
+
 /**
  * 用户登录模块
  * @author Administrator
@@ -30,16 +31,19 @@ public class LoginController {
 	public String login(){
 		return "jsp/login";
 	}
+	
 	//订单跳转
 	@RequestMapping("/order")
 	public String order(){
 		return "jsp/order";
 	}
+	
 	//购物车跳转
 	@RequestMapping("/shopCar")
 	public String shopCar(){
 		return "jsp/shopCar";
 	}
+	
 	@RequestMapping("/branchClassify")
 	public String branchClassify(){
 		return "jsp/branchClassify";
@@ -66,6 +70,7 @@ public class LoginController {
 		System.out.println("主页--------------");
 		return "jsp/index";
 	}
+	
 	@RequestMapping("/regist")
 	public String regist(){
 		return "jsp/regist";

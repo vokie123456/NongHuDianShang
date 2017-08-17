@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.farmerec.mapper.GoodsMapper">
+
+	<resultMap type="com.farmerec.entity.dto.GoodsDto" id="GoodsDto">
+		<result column="id" property="goods_id" javaType="string"/>
+		<result column="name" property="goods_name" javaType="string"/>
+		<result column="quantity" property="quantity" javaType="int"/>
+		<result column="price" property="price" javaType="double"/>
+		<result column="videoUrl" property="videoUrl" javaType="string"/>
+		<result column="introduce" property="introduce" javaType="string"/>
+	</resultMap>
+	
+	<!-- 增加商品 -->
+	<insert id="addGoods" parameterType="com.farmerec.entity.goods.Goods">
+		INSERT INTO goods (goods_id, goodsName) VALUES (uuid(),#{goodsName});
+	</insert>
+	
+	<!-- 根据id查询商品信息 -->
+	<select id="getGoodsById" parameterType="string" resultType="com.farmerec.entity.goods.GoodsDto">
+		SELECT g.goods_id AS id, g.goods_name AS name, i.quantity, i.price, i.videoUrl,i.introduce
+		   FROM goods AS g INNER JOIN goods_info as i ON g.goods_id = #{goodsId};
+	</select>
+	<!-- 根据商品名查询商品信息 -->
+	<select id="getGoodsByName" parameterType="string" resultType="com.farmerec.entity.goods.GoodsInfo">
+		SELECT * FROM goods WHERE goods_name LIKE '%${value}%';
+	</select>
+
+</mapper>

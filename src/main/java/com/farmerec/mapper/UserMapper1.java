@@ -7,6 +7,7 @@ import com.tlh.entity.User;
 import com.tlh.system.mapper.BaseMapper;
 
 public interface UserMapper1 extends BaseMapper{
+	
 	public int saveUserInfo(Users user) throws Exception;
 
 	public int deleteUserInfo(int id) throws Exception;

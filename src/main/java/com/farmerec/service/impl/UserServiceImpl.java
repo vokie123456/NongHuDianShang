@@ -32,6 +32,9 @@ public class UserServiceImpl implements UserService {
 		this.userMapper1 = userMapper1;
 	}
 
+	/**
+	 * 注册，将用户信息插入用户表
+	 */
 	@Override
 	public boolean saveEntity(Users t) throws Exception {
 		t.setPassword(DigestUtils.md5DigestAsHex(t.getPassword().getBytes()));		//对密码进行加密

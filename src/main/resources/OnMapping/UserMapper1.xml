@@ -2,9 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.farmerec.mapper.UserMapper1">
+
     <!-- 新增用户 -->
     <insert id="saveUserInfo" parameterType="com.farmerec.entity.user.Users">
-        insert into users(user_id,username,password,phonenumber,loginTime,email,verifyStatus) values(uuid(),#{username},#{password},#{phonenumber},#{loginTime},#{email},#{verifyStatus})
+        insert into users(user_id,username,password,phonenumber,loginTime,email,verifyStatus) 
+        	values(uuid(),#{username},#{password},#{phonenumber},#{loginTime},#{email},#{verifyStatus})
     </insert>
     <!-- 删除用户 -->
     <delete id="deleteUserInfo" parameterType="int">

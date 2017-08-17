@@ -1,12 +1,10 @@
 package com.farmerec.service;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import com.farmerec.entity.user.Users;
 import com.tlh.system.service.BaseService;
 
 public interface UserService extends BaseService<Users>{
+	
 	public boolean updateLoginInfo(Users user) throws Exception;
 
 	public boolean updatePassword(Users user) throws Exception;

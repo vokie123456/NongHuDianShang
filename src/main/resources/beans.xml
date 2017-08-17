@@ -11,14 +11,12 @@
 		http://www.springframework.org/schema/tx/spring-tx-4.1.xsd ">
 
 	<!-- 组件扫描 -->
-	<context:component-scan
-		base-package="com.**.service.impl,com.tlh.system.listener" />
+	<context:component-scan	base-package="com.**.service.impl,com.tlh.system.listener" />
 	<!-- 分离配置文件 -->
 	<context:property-placeholder location="classpath:jdbc.properties" />
 
 	<!-- 配置数据源 -->
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-		destroy-method="close">
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"	destroy-method="close">
 		<property name="driverClass" value="${jdbc.driver}" />
 		<property name="jdbcUrl" value="${jdbc.url}" />
 		<property name="user" value="${jdbc.username}" />
@@ -41,10 +39,10 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations">
-		<array>
-		<value>classpath*:mappings/*.xml</value>
-		<value>classpath*:OnMapping/*.xml</value>
-		</array>
+			<array>
+				<value>classpath*:mappings/*.xml</value>
+				<value>classpath*:OnMapping/*.xml</value>
+			</array>
 		</property>
 		<!-- 别名 -->
 		<property name="typeAliasesPackage" value="com.tlh.entity" />
@@ -97,8 +95,7 @@
         					or execution(* *..*Service.delete*(..))) and !bean(logService)"
 			id="logPointcut" />
 		<!-- 增强：事务处理 -->
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"
-			order="1" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut" order="1" />
 		<!-- 切面 -->
 		<aop:aspect id="loggerAspect" ref="logger" order="0">
 			<aop:around method="record" pointcut-ref="logPointcut" />

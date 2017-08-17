@@ -6,11 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>会员注册</title>
-<link href="${pageContext.request.contextPath}/css/common.css"
-	rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/css/register.css"
-	rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/css/register.css" rel="stylesheet" type="text/css" />
 <link rel="icon" href="${pageContext.request.contextPath}/image/title.ico" type="image/x-icon"/>
+
 <script type="text/javascript">
 	function checkForm() {
 		// 校验用户名:
@@ -89,6 +88,7 @@
 		// 4.发送
 		xhr.send(null);
 	}
+	
 	function checkCode() {
 		// 获得文件框值:
 		var checkcode = document.getElementById("checkcode").value;
@@ -110,6 +110,7 @@
 		// 4.发送
 		xhr.send(null);
 	}
+	
 	function checkEmail() {
 		// 获得文件框值:
 		var email = document.getElementById("email").value;
@@ -130,10 +131,12 @@
 		// 4.发送
 		xhr.send(null);
 	}
+	
 	//让页面自动执行。刷新一次图片
 	 window.onload = function(){
 		change();
     }
+    
 	function createXmlHttp() {
 		var xmlHttp;
 		try { // Firefox, Opera 8.0+, Safari
@@ -154,8 +157,7 @@
 
 	function change() {
 		var img1 = document.getElementById("checkImg");
-		img1.src = "${pageContext.request.contextPath}/authCode?date="
-				+ new Date().getTime();
+		img1.src = "${pageContext.request.contextPath}/authCode?date=" + new Date().getTime();
 	}
 	/* 	//点击刷新验证码
 	 function change(){
@@ -164,7 +166,6 @@
 </script>
 </head>
 <body>
-
 
 	<%@ include file="menu.jsp"%>
 
@@ -178,15 +179,15 @@
 					<div></div>
 					<form id="registerForm"
 						action="${ pageContext.request.contextPath }/userController/register"
-						method="post" novalidate="novalidate"
-						onsubmit="return checkForm();">
+						method="post" novalidate="novalidate" onsubmit="return checkForm();">
 						<table>
 							<tbody>
 								<tr>
 									<th><span class="requiredField">*</span>用户名:</th>
 									<td><input type="text" id="username" placeholder="您的名字！"
-										name="username" class="text" maxlength="20" /> <span
-										id="span1"></span></td>
+										name="username" class="text" maxlength="20" /> 
+										<span id="span1"></span>
+									</td>
 								</tr>
 								<tr>
 									<th><span class="requiredField">*</span>密&nbsp;&nbsp;码:</th>

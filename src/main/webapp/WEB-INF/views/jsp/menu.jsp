@@ -22,8 +22,8 @@
 			<c:when test="${sessionScope.user == null}">
 			<li id="headerLogin" class="headerLogin" style="display: list-item;">
 				<a href="${ pageContext.request.contextPath }/loginController/login">登录</a>|</li>
-			<li id="headerRegister" class="headerRegister"
-				style="display: list-item;"><a href="${ pageContext.request.contextPath }/loginController/regist">注册</a>|
+			<li id="headerRegister" class="headerRegister" style="display: list-item;">
+				<a href="${ pageContext.request.contextPath }/loginController/regist">注册</a>|
 			</li>
 			</c:when>
 			<c:otherwise>
