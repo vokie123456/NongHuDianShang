@@ -1,1 +1,0 @@
-ssh://git@192.168.0.133:23/dsyz/NongHuDianShang1.2.git
