@@ -20,11 +20,17 @@
 	<!-- 根据id查询商品信息 -->
 	<select id="getGoodsById" parameterType="string" resultType="com.farmerec.entity.goods.GoodsDto">
 		SELECT g.goods_id AS id, g.goods_name AS name, i.quantity, i.price, i.videoUrl,i.introduce
-		   FROM goods AS g INNER JOIN goods_info as i ON g.goods_id = #{goodsId};
+        FROM goods AS g
+		INNER JOIN goods_info as i ON g.goods_id = #{goodsId}
+        <where>
+            g.goods_id = #{goodsId}
+        </where>
 	</select>
 	<!-- 根据商品名查询商品信息 -->
 	<select id="getGoodsByName" parameterType="string" resultType="com.farmerec.entity.goods.GoodsInfo">
-		SELECT * FROM goods WHERE goods_name LIKE '%${value}%';
+		SELECT *
+        FROM goods
+        WHERE goods_name LIKE '%${value}%';
 	</select>
 
 </mapper>
